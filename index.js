@@ -73,17 +73,12 @@
     kilometer: ["km", "kilometer", "kilometers"],
   }
 
-  var UNITS = [
-    "foot",
-    "inch",
-    "millimeter",
-    "centimeter",
-    "meter",
-    "kilometer",
-  ]
+  function isValidUnit(str) {
+    return !!getUnit(str);
+  }
 
   function getUnit(str) {
-    for (var unit of UNITS) {
+    for (var unit of Object.keys(ALIASES)) {
       if (ALIASES[unit].indexOf(str) > -1) {
         return unit;
       }
@@ -103,6 +98,7 @@
   }
 
   return {
+    isUnit: isValidUnit,
     convert: convert,
   }
 });
